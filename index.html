@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#fff3f3">
+  <title>A Birthday Surprise ♡</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="ambient"></div>
+  <div class="sparkles" id="sparkles" aria-hidden="true"></div>
+
+  <!-- STEP 1: Envelope welcome screen -->
+  <section class="opening-screen" id="openingScreen">
+    <div class="orbit"></div>
+    <span class="tiny-heart heart-a">♡</span><span class="tiny-heart heart-b">✿</span>
+    <span class="tiny-heart heart-c">✧</span><span class="tiny-heart heart-d">✿</span>
+    <button class="envelope-button" id="envelopeButton" aria-label="Open your birthday surprise">
+      <img class="envelope-img" src="assets/pink-3d-envelope.png" alt="A 3D pink envelope with a heart seal">
+      <span class="envelope-glow"></span>
+    </button>
+    <h1 class="opening-title">Tap to open<br>your surprise</h1>
+    <button class="tap-button" id="tapButton"><span>☝</span> tap anywhere <b>✦</b></button>
+    <p class="opening-hint">a little something made just for you</p>
+  </section>
+
+  <!-- STEP 2: Letter reveal -->
+  <section class="letter-screen" id="letterScreen" aria-hidden="true">
+    <div class="letter-card" id="letterCard">
+      <div class="letter-top">A LITTLE NOTE FOR YOU <span>♡</span></div>
+      <div class="letter-icon">💌</div>
+      <p class="script-text">To someone special,</p>
+      <h2>Today is all about <em id="letterName">you</em>!</h2>
+      <p class="letter-copy">I made this little surprise to remind you how wonderful you are. May your day be filled with laughter, love, sweet moments and everything that makes you smile.</p>
+      <p class="letter-sign">With lots of love, <span>♡</span></p>
+      <button class="continue-button" id="continueButton">Continue to your birthday <span>→</span></button>
+    </div>
+  </section>
+
+  <!-- STEP 3: Birthday page -->
+  <main class="birthday-screen" id="birthdayScreen" aria-hidden="true">
+    <header class="mini-header">A LITTLE WEBSITE, MADE WITH LOVE <span>♡</span></header>
+    <section class="birthday-hero">
+      <p class="overline">TODAY IS YOUR DAY</p>
+      <div class="cake-3d" aria-hidden="true">
+        <div class="cake-flames"><i></i><i></i><i></i></div>
+        <div class="cake-candles"><i></i><i></i><i></i></div>
+        <div class="cake-icing"></div><div class="cake-layer"></div><div class="cake-base"></div>
+        <div class="cake-plate"></div>
+      </div>
+      <h1>Happy Birthday,<br><em id="birthdayName">Beautiful Human</em>! ♡</h1>
+      <p class="birthday-subtitle">May your day be as lovely as your heart.</p>
+      <button class="wish-button" id="wishButton">Make a wish ✨</button>
+      <p class="wish-result" id="wishResult"></p>
+    </section>
+    <section class="memory-section">
+      <p class="overline">LITTLE MOMENTS</p>
+      <h2>Memories worth <em>keeping</em></h2>
+      <p class="memory-help">Tap a frame to add your favourite photos.</p>
+      <div class="memory-grid">
+        <label class="memory-card"><input type="file" accept="image/*"><img alt="Memory one"><span>＋<small>our favourite moment</small></span><b>the good times</b></label>
+        <label class="memory-card"><input type="file" accept="image/*"><img alt="Memory two"><span>＋<small>a lovely memory</small></span><b>little things</b></label>
+        <label class="memory-card"><input type="file" accept="image/*"><img alt="Memory three"><span>＋<small>one more photo</small></span><b>always remember</b></label>
+      </div>
+    </section>
+    <section class="final-note">
+      <div class="final-heart">♡</div>
+      <p class="script-text">One last thing...</p>
+      <h2>Never stop being <em>you.</em></h2>
+      <p>You deserve all the happiness, kindness and beautiful things this world has to offer. Keep shining!</p>
+      <strong>Happy Birthday once again ♡</strong>
+    </section>
+    <footer>made with a little bit of love ♡</footer>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>

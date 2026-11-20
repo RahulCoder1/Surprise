@@ -1,0 +1,70 @@
+*{box-sizing:border-box}
+:root{--pink:#d64f83;--deep:#a94a91;--soft:#fff1f1;--ink:#5a4353}
+html,body{margin:0;min-height:100%;font-family:'DM Sans',sans-serif;color:var(--ink)}
+body{min-height:100vh;overflow-x:hidden;background:linear-gradient(118deg,#fff2ed 0%,#fff7f7 48%,#eeeaff 100%)}
+button{font:inherit;cursor:pointer}
+.ambient{position:fixed;inset:0;z-index:-2;background:radial-gradient(circle at 17% 35%,#ffd9d5 0,transparent 33%),radial-gradient(circle at 82% 72%,#ded9ff 0,transparent 34%);opacity:.55}
+.sparkles{position:fixed;inset:0;overflow:hidden;pointer-events:none;z-index:3}
+.sparkle{position:absolute;color:#f2b7d0;opacity:.65;animation:floatSparkle var(--duration) ease-in-out infinite alternate}
+@keyframes floatSparkle{from{transform:translate3d(0,0,0) rotate(0deg);opacity:.25}to{transform:translate3d(var(--move),-28px,0) rotate(35deg);opacity:.9}}
+.opening-screen{min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;text-align:center;padding:32px 18px 45px;isolation:isolate;transition:opacity .8s,transform .8s}
+.orbit{position:absolute;width:min(360px,78vw);aspect-ratio:1;border:1px solid #f5d9e4;border-radius:50%;top:50%;left:50%;transform:translate(-50%,-72%);z-index:-1;opacity:.65}
+.envelope-button{position:relative;border:0;background:transparent;width:min(280px,67vw);aspect-ratio:1.12;display:grid;place-items:center;margin-top:-16px;animation:envelopeFloat 3.5s ease-in-out infinite;filter:drop-shadow(0 20px 24px #d69cb64a)}
+.envelope-img{width:100%;height:100%;object-fit:contain;mix-blend-mode:multiply;position:relative;z-index:1;transition:transform .65s cubic-bezier(.2,.8,.2,1),filter .6s}
+.envelope-button:hover .envelope-img{transform:translateY(-8px) rotate(-3deg) scale(1.04)}
+.envelope-glow{position:absolute;width:65%;height:28%;bottom:9%;left:17%;background:#d78eb5;filter:blur(35px);opacity:.22;border-radius:50%}
+@keyframes envelopeFloat{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-13px) rotate(1deg)}}
+.opening-title{font:600 clamp(35px,5vw,43px)/1.12 'Playfair Display',serif;color:#c94f83;margin:7px 0 15px;text-shadow:0 3px 12px #fff}
+.tap-button{border:1px solid #f5d2df;background:#ffffffd9;color:#dc6590;border-radius:28px;padding:11px 22px;box-shadow:0 5px 15px #e8b6c326;font-size:13px;letter-spacing:.2px;transition:.25s}
+.tap-button:hover{transform:translateY(-3px);box-shadow:0 9px 20px #e8b6c34d}.tap-button span{margin-right:7px}.tap-button b{margin-left:9px}
+.opening-hint{font:17px 'Caveat';color:#b28a9e;margin:13px 0 0;opacity:.8}
+.tiny-heart{position:absolute;color:#eabbd4;font-size:23px;animation:twinkle 2.8s infinite alternate}
+.heart-a{top:9%;left:33%}.heart-b{top:34%;right:23%;font-size:18px}.heart-c{bottom:18%;left:51%;font-size:17px}.heart-d{bottom:16%;right:31%;font-size:20px}
+@keyframes twinkle{to{transform:scale(1.35) rotate(18deg);opacity:.35}}
+/* envelope opening sequence */
+.opening-screen.opening .envelope-img{animation:envelopeOpen .95s forwards}
+@keyframes envelopeOpen{0%{transform:scale(1) rotate(0)}35%{transform:scale(1.13) rotate(5deg)}100%{transform:scale(.12) translateY(-150px);opacity:0}}
+.opening-screen.opening .opening-title,.opening-screen.opening .tap-button,.opening-screen.opening .opening-hint{opacity:0;transform:translateY(18px);transition:.45s}
+.opening-screen.fade-out{opacity:0;transform:scale(1.04);pointer-events:none}
+.letter-screen{position:fixed;inset:0;display:none;place-items:center;padding:22px;z-index:5;background:#fff5f1ed;backdrop-filter:blur(8px);opacity:0}
+.letter-screen.show{display:grid;animation:screenIn .7s forwards}
+@keyframes screenIn{to{opacity:1}}
+.letter-card{position:relative;width:min(510px,100%);padding:43px 42px 35px;text-align:center;background:#fffdfa;border:1px solid #f1dce0;box-shadow:0 22px 70px #9f6b7c25;transform:translateY(30px) rotate(-1deg);animation:cardIn .8s .15s forwards}
+@keyframes cardIn{to{transform:translateY(0) rotate(0)}}
+.letter-card:before{content:"";position:absolute;inset:9px;border:1px solid #f3e4e0;pointer-events:none}
+.letter-top{font-size:9px;letter-spacing:3px;color:#bd8d9e}.letter-top span{color:#d76b91;margin-left:6px}
+.letter-icon{font-size:43px;margin:22px 0 5px;filter:drop-shadow(0 6px 7px #d9a5b566)}
+.script-text{font:25px 'Caveat';color:#c76a91;margin:8px 0}
+.letter-card h2,.final-note h2{font:500 34px 'Playfair Display';margin:8px 0 14px;color:#604858}
+.letter-card h2 em,.birthday-hero h1 em,.memory-section h2 em,.final-note h2 em{color:#d45c89;font-weight:500}
+.letter-copy,.final-note>p:not(.script-text){font-size:13px;line-height:2;color:#927d89;max-width:390px;margin:0 auto}
+.letter-sign{font:19px 'Caveat';color:#9c7b8d;text-align:right;margin:23px 10px 20px}.letter-sign span{color:#d45c89;font-size:24px}
+.continue-button,.wish-button{border:0;border-radius:25px;padding:13px 20px;background:linear-gradient(100deg,#d95e8d,#ad65ad);color:white;font-size:12px;box-shadow:0 8px 18px #c16b9a36;transition:.25s}
+.continue-button:hover,.wish-button:hover{transform:translateY(-3px);filter:saturate(1.1)}.continue-button span{margin-left:12px}
+.birthday-screen{display:none;opacity:0;max-width:900px;margin:auto;padding:0 22px 45px}
+.birthday-screen.show{display:block;animation:screenIn .8s forwards}
+.mini-header{display:flex;justify-content:center;gap:8px;padding:23px 0;font-size:9px;letter-spacing:2px;color:#b28a9e}.mini-header span{color:#d45c89}
+.birthday-hero{text-align:center;padding:45px 0 60px}.overline{font-size:9px;letter-spacing:3px;color:#bd8b9e}
+.birthday-hero h1{font:600 clamp(38px,7vw,62px)/1.12 'Playfair Display';color:#604858;margin:17px 0 10px}
+.birthday-subtitle,.memory-help{font-size:13px;color:#9b8391}.wish-button{margin-top:20px}.wish-result{font:20px 'Caveat';color:#c45e89;min-height:24px}
+.cake-3d{width:170px;height:150px;margin:15px auto 0;position:relative;filter:drop-shadow(0 15px 15px #bc7b9a35);animation:cakeBob 3s ease-in-out infinite}
+@keyframes cakeBob{50%{transform:translateY(-8px) rotate(1deg)}}
+.cake-plate{position:absolute;bottom:7px;left:2px;width:166px;height:20px;background:linear-gradient(#fff,#ead9eb);border-radius:50%;box-shadow:0 5px 9px #b17c9c33}
+.cake-base{position:absolute;bottom:19px;left:16px;width:138px;height:58px;border-radius:12px 12px 20px 20px;background:linear-gradient(90deg,#d88caa,#f4b8c9 48%,#d988a8);box-shadow:inset 0 -8px #c87698}
+.cake-layer{position:absolute;bottom:62px;left:26px;width:118px;height:42px;border-radius:50% 50% 12px 12px;background:linear-gradient(90deg,#f2b9ce,#ffe0df 50%,#e9a7c3)}
+.cake-icing{position:absolute;bottom:53px;left:26px;width:118px;height:17px;border-radius:50%;background:#fff0e9;z-index:2;box-shadow:0 5px #e7a6bd}
+.cake-candles{position:absolute;z-index:3;top:24px;left:52px;display:flex;gap:21px}.cake-candles i{width:8px;height:34px;border-radius:3px;background:repeating-linear-gradient(45deg,#fff 0 5px,#df83a6 5px 9px)}
+.cake-flames{position:absolute;z-index:4;top:9px;left:53px;display:flex;gap:23px}.cake-flames i{width:10px;height:15px;background:#ffc76d;border-radius:80% 0 80% 80%;transform:rotate(45deg);animation:flame .45s infinite alternate}
+@keyframes flame{to{transform:rotate(35deg) scale(.8)}}
+.memory-section{text-align:center;padding:50px 0 65px}.memory-section h2{font:500 36px 'Playfair Display';margin:10px 0}.memory-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin:35px auto 0;max-width:720px}
+.memory-card{background:#fffdfa;padding:10px 10px 34px;position:relative;box-shadow:0 12px 28px #9f6b7c1c;cursor:pointer;transform:rotate(-2deg);transition:.25s}.memory-card:nth-child(2){transform:rotate(2deg)}.memory-card:nth-child(3){transform:rotate(-1deg)}.memory-card:hover{transform:translateY(-7px) rotate(0)}
+.memory-card input{display:none}.memory-card img{display:none;width:100%;height:185px;object-fit:cover}.memory-card>span{height:185px;display:flex;align-items:center;justify-content:center;flex-direction:column;background:#f9e9ee;color:#c9789a;font-size:30px}.memory-card>span small{font:16px 'Caveat';margin-top:5px}.memory-card b{position:absolute;bottom:9px;left:0;right:0;font:17px 'Caveat';font-weight:500;color:#94798a}
+.final-note{max-width:580px;margin:25px auto 35px;padding:48px 30px;text-align:center;background:#fff9f7d9;border:1px solid #f1dce4;box-shadow:0 12px 35px #a87c9720}.final-heart{font-size:36px;color:#d76c94}.final-note h2{font-size:33px}.final-note strong{display:block;margin-top:23px;font:20px 'Caveat';color:#c76a91}
+footer{text-align:center;font:17px 'Caveat';color:#ae8b9c;padding:25px}
+@media(max-width:600px){.opening-screen{padding-bottom:55px}.envelope-button{width:min(250px,72vw)}.opening-title{font-size:37px}.orbit{width:78vw}.letter-card{padding:38px 25px 30px}.letter-card h2{font-size:29px}.memory-grid{grid-template-columns:1fr;max-width:270px;gap:24px}.memory-card img,.memory-card>span{height:230px}.birthday-hero{padding-top:30px}.birthday-hero h1{font-size:42px}}
+
+
+/* Layout safety for stage transitions */
+.opening-screen[style*="display: none"] { display: none !important; }
+.letter-screen[style*="display: none"] { display: none !important; }
+.birthday-screen { width: 100%; min-height: 100vh; }
