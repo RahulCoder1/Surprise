@@ -1,104 +1,27 @@
-// PERSONALISE YOUR BIRTHDAY PAGE HERE
-const birthdayName = "Beautiful Human"; // Replace with the person's name
-
-document.getElementById("letterName").textContent = birthdayName;
-document.getElementById("birthdayName").textContent = birthdayName;
-
-const openingScreen = document.getElementById("openingScreen");
-const letterScreen = document.getElementById("letterScreen");
-const birthdayScreen = document.getElementById("birthdayScreen");
-const envelopeButton = document.getElementById("envelopeButton");
-const tapButton = document.getElementById("tapButton");
-
-function openSurprise() {
-  if (openingScreen.classList.contains("opening")) return;
-
-  openingScreen.classList.add("opening");
-
-  // After the envelope animation, remove the welcome screen from page layout.
-  setTimeout(() => {
-    openingScreen.classList.add("fade-out");
-    letterScreen.classList.add("show");
-    letterScreen.setAttribute("aria-hidden", "false");
-
-    // This prevents the hidden welcome screen from pushing the next page down.
-    setTimeout(() => {
-      openingScreen.style.display = "none";
-    }, 800);
-  }, 850);
-}
-envelopeButton.addEventListener("click", openSurprise);
-tapButton.addEventListener("click", openSurprise);
-openingScreen.addEventListener("click", event => {
-  if (event.target === openingScreen) openSurprise();
-});
-
-document.getElementById("continueButton").addEventListener("click", () => {
-  letterScreen.style.opacity = "0";
-
-  setTimeout(() => {
-    letterScreen.classList.remove("show");
-    letterScreen.setAttribute("aria-hidden", "true");
-
-    // Ensure the first two stages no longer occupy page space.
-    openingScreen.style.display = "none";
-    letterScreen.style.display = "none";
-
-    birthdayScreen.classList.add("show");
-    birthdayScreen.setAttribute("aria-hidden", "false");
-
-    window.scrollTo({ top: 0, behavior: "instant" });
-  }, 450);
-});
-document.getElementById("wishButton").addEventListener("click", () => {
-  document.getElementById("wishResult").textContent = "May all your wishes come true! ✨";
-  makeConfetti();
-});
-
-// Photo picker: previews the selected image in its frame; nothing is uploaded.
-document.querySelectorAll(".memory-card input").forEach(input => {
-  input.addEventListener("change", event => {
-    const file = event.target.files && event.target.files[0];
-    if (!file) return;
-    const card = input.closest(".memory-card");
-    const image = card.querySelector("img");
-    image.src = URL.createObjectURL(file);
-    image.style.display = "block";
-    card.querySelector("span").style.display = "none";
-  });
-});
-
-// Floating decorative stars and flowers.
-const sparkleBox = document.getElementById("sparkles");
-const sparkleSymbols = ["✿", "♡", "✧", "·", "✦"];
-for (let i = 0; i < 24; i++) {
-  const sparkle = document.createElement("span");
-  sparkle.className = "sparkle";
-  sparkle.textContent = sparkleSymbols[i % sparkleSymbols.length];
-  sparkle.style.left = `${Math.random() * 100}%`;
-  sparkle.style.top = `${Math.random() * 100}%`;
-  sparkle.style.fontSize = `${10 + Math.random() * 13}px`;
-  sparkle.style.setProperty("--duration", `${2 + Math.random() * 3}s`);
-  sparkle.style.setProperty("--move", `${-18 + Math.random() * 36}px`);
-  sparkleBox.appendChild(sparkle);
-}
-
-function makeConfetti() {
-  const symbols = ["♡", "✿", "✧", "♥"];
-  for (let i = 0; i < 35; i++) {
-    const piece = document.createElement("span");
-    piece.textContent = symbols[Math.floor(Math.random() * symbols.length)];
-    Object.assign(piece.style, {
-      position: "fixed", left: `${Math.random() * 100}vw`, top: "-25px",
-      zIndex: 20, color: ["#d45c89", "#e8a8bd", "#a98acb"][i % 3],
-      fontSize: `${14 + Math.random() * 16}px`, pointerEvents: "none",
-      transition: "transform 2.8s ease-in, opacity 2.8s"
-    });
-    document.body.appendChild(piece);
-    requestAnimationFrame(() => {
-      piece.style.transform = `translate(${(Math.random() - .5) * 180}px, ${innerHeight + 80}px) rotate(${Math.random() * 500}deg)`;
-      piece.style.opacity = "0";
-    });
-    setTimeout(() => piece.remove(), 3000);
-  }
-}
+const birthdayName = "My Love"; // Change this to your girlfriend's name
+document.getElementById("gfName").textContent = birthdayName;
+const opened = new Set();
+const messages = {
+ love:{symbol:"♥",kicker:"A LITTLE LOVE NOTE",title:"You are my favourite person.",text:"You make ordinary moments feel magical. I am grateful for your smile, your kindness and every little thing that makes you you."},
+ sunshine:{symbol:"✿",kicker:"MY SUNSHINE",title:"Keep blooming, beautiful.",text:"May your days be bright, your heart stay light, and may life always give you reasons to smile like sunshine."},
+ wish:{symbol:"✧",kicker:"A WISH FROM MY HEART",title:"May every dream find you.",text:"I wish you happiness in little things, courage for big dreams and beautiful surprises at every turn."}
+};
+const buttons=[...document.querySelectorAll(".neo-button")];
+buttons.forEach(button=>button.addEventListener("click",()=>{
+ const id=button.dataset.id, m=messages[id]; opened.add(id); button.classList.add("selected");
+ document.getElementById("messageSymbol").textContent=m.symbol;
+ document.getElementById("messageKicker").textContent=m.kicker;
+ document.getElementById("messageTitle").textContent=m.title;
+ document.getElementById("messageText").textContent=m.text;
+ document.querySelectorAll(".progress-dots i").forEach((dot,i)=>dot.classList.toggle("done",i<opened.size));
+ document.getElementById("helper").textContent=`${opened.size} of 3 opened · ${opened.size===3?"your surprise is ready":"open the remaining symbol(s)"}`;
+ document.getElementById("unlockButton").disabled=opened.size!==3;
+ burst(12);
+}));
+function show(id){document.querySelectorAll(".screen").forEach(s=>s.classList.toggle("active",s.id===id));}
+document.getElementById("unlockButton").addEventListener("click",()=>{if(opened.size===3)show("step2")});
+document.getElementById("nextWish").addEventListener("click",()=>show("step3"));
+document.querySelectorAll(".back").forEach(b=>b.addEventListener("click",()=>show(b.dataset.back)));
+document.getElementById("heartBurst").addEventListener("click",()=>{document.getElementById("finalLine").textContent="A thousand hearts, and every one belongs to you. ♥";burst(55)});
+function burst(n){const layer=document.getElementById("particles");const symbols=["♥","♡","✧","✿"];for(let i=0;i<n;i++){const el=document.createElement("span");el.textContent=symbols[i%symbols.length];el.style.left=Math.random()*100+"%";el.style.top=(25+Math.random()*65)+"%";el.style.fontSize=(12+Math.random()*18)+"px";el.style.animationDuration=(2+Math.random()*2)+"s";layer.appendChild(el);setTimeout(()=>el.remove(),4500)}}
+const layer=document.getElementById("particles");for(let i=0;i<18;i++){const el=document.createElement("span");el.textContent=["♡","✧","·","✦"][i%4];el.style.left=Math.random()*100+"%";el.style.top=Math.random()*100+"%";el.style.fontSize=(9+Math.random()*12)+"px";el.style.animationDelay=Math.random()*3+"s";layer.appendChild(el)}
