@@ -1,76 +1,149 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#ffffff"><title>A Little Surprise For You</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#fff8fb">
+  <title>A Surprise Made With Love ♡</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div class="ambient"></div><div class="particles" id="particles"></div>
-<main>
-<section class="screen active" id="step1">
-  <div class="content">
-    <p class="eyebrow">A LITTLE SURPRISE · MADE WITH LOVE</p>
-    <h1>A little world of <em>love</em></h1>
-    <p class="intro">Touch all three little symbols to unlock your surprise.</p>
-    <div class="icon-row">
-      <button class="neo-button" data-id="love" aria-label="Open love message">
-        <span class="icon-3d heart">♥</span><span class="button-label">LOVE</span><span class="check">✓</span>
-      </button>
-      <button class="neo-button" data-id="sunshine" aria-label="Open sunshine message">
-        <span class="icon-3d flower">✿</span><span class="button-label">SUNSHINE</span><span class="check">✓</span>
-      </button>
-      <button class="neo-button" data-id="wish" aria-label="Open wish message">
-        <span class="icon-3d star">✧</span><span class="button-label">WISH</span><span class="check">✓</span>
-      </button>
+  <div class="glow glow-a"></div><div class="glow glow-b"></div>
+  <div class="particles" id="particles" aria-hidden="true"></div>
+
+  <main class="experience">
+    <div class="topline">
+      <span class="brand">♡ MADE WITH LOVE</span>
+      <span id="stepLabel">01 <i>/</i> 09</span>
     </div>
-    <article class="message-card" id="messageCard" aria-live="polite">
-      <span class="message-symbol" id="messageSymbol">♡</span>
-      <small id="messageKicker">A LITTLE NOTE FOR YOU</small>
-      <h2 id="messageTitle">Choose your first symbol</h2>
-      <p id="messageText">Each symbol has a little message from my heart. Open all three to continue.</p>
-      <div class="progress-dots"><i></i><i></i><i></i></div>
-    </article>
-    <button class="main-button" id="unlockButton" disabled>Unlock your birthday surprise <span>→</span></button>
-    <p class="helper" id="helper">0 of 3 opened · tap each symbol above</p>
-  </div>
-</section>
+    <div class="progress"><span id="progress"></span></div>
 
-<section class="screen" id="step2">
- <div class="content">
-  <p class="eyebrow">JUST FOR YOU · WITH ALL MY HEART</p>
-  <div class="cake-scene">
-   <div class="cake-shadow"></div><div class="cake">
-    <i class="flame"></i><i class="candle"></i><i class="top-icing"></i><i class="cake-top"></i><i class="cake-mid"></i><i class="cake-base"></i><i class="plate"></i><b>♡</b>
-   </div>
-  </div>
-  <p class="script">To my favourite person</p>
-  <h1>Happy Birthday,<br><em id="gfName">My Love</em>! ♡</h1>
-  <p class="body-copy">May your days be full of laughter, your heart be full of peace, and your life be filled with the same beautiful happiness you bring into mine.</p>
-  <button class="main-button" id="nextWish">A little more magic <span>♡</span></button>
-  <button class="text-button back" data-back="step1">← Back</button>
- </div>
-</section>
+    <section class="stage active" data-stage="0">
+      <div class="eyebrow">A LITTLE SURPRISE, JUST FOR YOU</div>
+      <h1 class="headline">You make my world<br><em>more beautiful</em></h1>
+      <p class="intro">I made nine little moments for the girl who means so much to me.</p>
+      <div class="heart-world">
+        <span class="orbit orbit-one"></span><span class="orbit orbit-two"></span>
+        <span class="mini-float f1">♡</span><span class="mini-float f2">✦</span><span class="mini-float f3">♥</span>
+        <button class="main-heart" id="beginButton" aria-label="Begin the surprise">♥</button>
+      </div>
+      <p class="hint">Tap the glowing heart to begin</p>
+      <button class="primary" id="beginText">Begin our surprise <b>→</b></button>
+    </section>
 
-<section class="screen" id="step3">
- <div class="content final-content">
-  <p class="eyebrow">ONE LAST LITTLE SURPRISE</p>
-  <div class="final-orbit">
-   <span class="orbit-heart h1">♥</span><span class="orbit-heart h2">♡</span><span class="orbit-heart h3">♥</span>
-   <div class="big-heart">♥</div>
-   <span class="orbit-star s1">✧</span><span class="orbit-star s2">✦</span><span class="orbit-star s3">✧</span>
-  </div>
-  <p class="script">A little promise from my heart</p>
-  <h1>My little <em>promises</em> to you</h1>
-  <p class="body-copy">Whatever life brings, I want to keep making you smile and reminding you how special you are.</p>
-  <div class="promise-grid"><article class="promise-card"><span>♥</span><b>To make you smile</b><small>Even on the ordinary days.</small></article><article class="promise-card"><span>✿</span><b>To cheer for you</b><small>In every dream you follow.</small></article><article class="promise-card"><span>∞</span><b>To value you</b><small>Today and every tomorrow.</small></article></div>
-  <button class="main-button" id="heartBurst">Send you a thousand hearts <span>♥</span></button>
-  <p class="final-line" id="finalLine">You are my favourite part of every day. ♡</p>
-  <button class="text-button back" data-back="step2">← Back</button>
- </div>
-</section>
-</main>
-<script src="script.js"></script>
-</body></html>
+    <section class="stage" data-stage="1">
+      <div class="eyebrow">A GIFT FROM MY HEART</div>
+      <h2 class="headline">A special surprise<br><em>for you</em></h2>
+      <p class="intro">There is a little something waiting inside. Tap the gift to open it.</p>
+      <button class="gift" id="giftButton" aria-label="Open gift">
+        <span class="gift-aura"></span><span class="gift-box"><i></i></span>
+        <span class="gift-lid"><i></i><b></b></span>
+        <span class="gift-star star-a">✦</span><span class="gift-star star-b">♡</span>
+      </button>
+      <p class="reveal" id="giftMessage">A tiny box with a very big feeling. ♡</p>
+      <button class="primary" id="giftNext" disabled>Open the next moment <b>→</b></button>
+    </section>
+
+    <section class="stage" data-stage="2">
+      <div class="eyebrow">WORDS I WANT YOU TO KEEP</div>
+      <h2 class="headline">A little love letter<br><em>just for you</em></h2>
+      <p class="intro">Tap the heart seal and let the letter unfold.</p>
+      <button class="envelope" id="envelopeButton" aria-label="Open love letter">
+        <span class="paper"><strong>My Dearest Love,</strong><br>You make my days brighter. ♡</span>
+        <span class="env-back"></span><span class="env-left"></span><span class="env-right"></span>
+        <span class="env-flap"></span><span class="seal">♥</span>
+      </button>
+      <article class="letter" id="letterText">
+        <h3>My Dearest Love,</h3>
+        <p>You make ordinary days feel magical. Your smile brings me peace, your kindness inspires me, and every moment with you becomes a memory I want to keep. I hope your birthday is as beautiful as your heart.</p>
+        <strong>Forever yours ♡</strong>
+      </article>
+      <button class="primary" id="letterNext" disabled>Keep this feeling <b>→</b></button>
+    </section>
+
+    <section class="stage" data-stage="3">
+      <div class="eyebrow">OUR LITTLE JOURNEY</div>
+      <h2 class="headline">Our love <em>story</em></h2>
+      <p class="intro">Every beautiful story is made of little moments.</p>
+      <div class="timeline">
+        <div class="timeline-row"><span>01</span><div><b>The first hello</b><small>The beginning of something special.</small></div><i>♡</i></div>
+        <div class="timeline-row"><span>02</span><div><b>Getting closer</b><small>Every conversation meant a little more.</small></div><i>✦</i></div>
+        <div class="timeline-row"><span>03</span><div><b>Falling for you</b><small>You became my favourite person.</small></div><i>♥</i></div>
+        <div class="timeline-row"><span>04</span><div><b>More to come</b><small>Our best chapters are still ahead.</small></div><i>∞</i></div>
+      </div>
+      <button class="primary" data-next>Continue our story <b>→</b></button>
+    </section>
+
+    <section class="stage" data-stage="4">
+      <div class="eyebrow">THREE LITTLE REASONS</div>
+      <h2 class="headline">Why you're <em>special</em></h2>
+      <p class="intro">Tap each 3D heart. I put a little message inside every one.</p>
+      <div class="reason-row">
+        <button class="reason-heart" data-message="Your smile can turn even my longest day into a beautiful one.">♥<small>01</small></button>
+        <button class="reason-heart" data-message="I love your kindness, your warmth, and the beautiful person you are.">♥<small>02</small></button>
+        <button class="reason-heart" data-message="With you, even the simplest moments become my favourite memories.">♥<small>03</small></button>
+      </div>
+      <div class="message-glass" id="reasonMessage">Choose a heart to reveal your message ♡</div>
+      <button class="primary" data-next>There's more <b>→</b></button>
+    </section>
+
+    <section class="stage" data-stage="5">
+      <div class="eyebrow">COUNTING DOWN TO YOUR DAY</div>
+      <h2 class="headline">Your day is<br><em>almost here</em></h2>
+      <p class="intro">Every second is one second closer to celebrating you.</p>
+      <div class="countdown">
+        <div><b id="days">00</b><small>Days</small></div><div><b id="hours">00</b><small>Hours</small></div>
+        <div><b id="minutes">00</b><small>Minutes</small></div><div><b id="seconds">00</b><small>Seconds</small></div>
+      </div>
+      <p class="reveal" id="countdownNote">A beautiful day deserves a beautiful celebration. ♡</p>
+      <button class="primary" data-next>Let's celebrate <b>→</b></button>
+    </section>
+
+    <section class="stage" data-stage="6">
+      <div class="eyebrow">TODAY IS ALL ABOUT YOU</div>
+      <h2 class="headline">Happy Birthday,<br><em>Dear Shruu!</em></h2>
+      <p class="intro">Close your eyes, make a wish, and let the magic begin.</p>
+      <div class="cake">
+        <div class="flames"><i></i><i></i><i></i></div><div class="candles"><i></i><i></i><i></i></div>
+        <div class="frosting"></div><div class="cake-top"></div><div class="cake-body"></div><div class="plate"></div>
+      </div>
+      <button class="primary" id="wishButton">Make a wish ✨</button>
+      <p class="reveal" id="wishMessage"></p>
+      <button class="secondary" data-next>One last surprise <b>→</b></button>
+    </section>
+
+    <section class="stage" data-stage="7">
+      <div class="eyebrow">A PROMISE FROM MY HEART</div>
+      <h2 class="headline">I love you<br><em>forever</em></h2>
+      <div class="forever-scene"><span class="halo"></span><span class="big-heart">♥</span><i class="spark s-a">✦</i><i class="spark s-b">♡</i><i class="spark s-c">✧</i></div>
+      <p class="intro final-message">Thank you for being you. You make my life brighter, my heart happier, and my world more beautiful. Here's to many more smiles together.</p>
+      <p class="signature">With all my love, always ♡</p>
+      <button class="primary" data-next>Our special song <b>→</b></button>
+    </section>
+
+    <section class="stage" data-stage="8">
+      <div class="eyebrow">OUR LITTLE SOUNDTRACK</div>
+      <h2 class="headline">A song for <em>us</em></h2>
+      <p class="intro">Choose a song that reminds you of us and play it here.</p>
+      <div class="music-panel">
+        <div class="vinyl" id="vinyl">♫</div>
+        <div><b>Our Special Song</b><small id="songName">No song selected yet</small></div>
+        <label class="upload">Choose your song<input type="file" id="songInput" accept="audio/*"></label>
+        <audio id="audioPlayer" controls></audio>
+      </div>
+      <p class="signature">Happy Birthday, beautiful. I love you. ♥</p>
+      <button class="secondary" id="restartButton">Replay the surprise ↻</button>
+    </section>
+
+    <nav class="controls" aria-label="Step navigation">
+      <button id="backButton" disabled>← Back</button>
+      <span id="navHint">Tap the heart to begin</span>
+      <button id="nextButton" disabled>Next →</button>
+    </nav>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
